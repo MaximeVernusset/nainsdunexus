@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quel Nain es-tu ?</title>
+    <style>
+        body {
+            background: #1d1b1b;
+            font-family: 'Cinzel', serif;
+            color: #f0e6d2;
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #ffe600;
+            text-shadow: 2px 2px #000;
+        }
+
+        .question {
+            margin-bottom: 2em;
+        }
+
+        .answers button {
+            display: block;
+            background: #3a3a3a;
+            border: 2px solid #ffd700;
+            color: #ffe;
+            font-weight: bold;
+            margin: 0.5em 0;
+            padding: 0.75em;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .answers button:hover {
+            background: #ffd700;
+            color: #1d1b1b;
+        }
+
+        .result {
+            font-size: 1.5em;
+            margin-top: 2em;
+            text-align: center;
+            color: #a5ff00;
+        }
+
+        .details {
+            margin-top: 1em;
+            padding: 1em;
+            background: #2e2e2e;
+            border-radius: 10px;
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🧙‍♂️ Découvre ton profil de Nain du Nexus 🧙‍♀️</h1>
+    <div id="quiz"></div>
+
+    <script>
+        const profiles = {
+            "Nain Geigneur": "Le râleur sacré. Toujours prêt à pointer les défauts du système, il se nourrit de soupirs et d'ironie mordante.",
+            "Nain Gras": "L'épicurien du Nexus. Adeptes des pauses prolongées, des repas consistants, et d'un certain confort existentiel.",
+            "Nain Posteur": "Le messager compulsif. Il publie, partage, tague, illustre… tant qu'il y a un canal, il y a un post.",
+            "Nain Corrigible": "L'évolutif permanent. Il se remet en question plus vite que son ombre. En constante mutation.",
+            "Nain Crevable": "Le vaillant épuisé. Il donne tout, tout le temps, jusqu'à finir en tas d'os sous une montagne de tâches.",
+            "Nain Capable": "Le productif redoutable. Il sait faire, il fait bien, et souvent mieux que prévu. Redouté et respecté.",
+            "Nain Comparable": "L'archiviste critique. Il a tout vu, tout comparé, et sait ce qu'on faisait 'mieux avant'.",
+            "Nain Conscient": "Le sage lucide. Il observe les dynamiques, comprend les enjeux, et intervient toujours au bon moment.",
+            "Nain Discret": "L'ombre silencieuse. Présent sans bruit, pertinent sans éclat. Le genre qu'on oublie… jusqu'à ce qu'il parle.",
+            "Nain Fidèle": "Le loyal par essence. Attaché à ses compagnons, à ses rituels et à la meute. Il tient la ligne, quoi qu'il arrive.",
+            "Nain Secte": "Le croyant fervent. Son système de pensée est une cathédrale. Il convertit plus qu'il ne convainc.",
+            "Nain Variant": "Le métamorphe du Nexus. Adaptable à l'extrême, insaisissable, il devient ce que le moment exige."
+        };
+
+        const questions = [
+            {
+                question: "Comment réagis-tu face à une charge de travail imprévue ?",
+                answers: [
+                    { text: "Je râle fort", type: "Nain Geigneur" },
+                    { text: "Je me donne à fond, quitte à m'épuiser", type: "Nain Crevable" },
+                    { text: "Je prends du recul et j'analyse", type: "Nain Conscient" },
+                    { text: "Je m'adapte comme je peux, ça change tout le temps", type: "Nain Variant" }
+                ]
+            },
+            {
+                question: "Que fais-tu pendant une réunion d'équipe ?",
+                answers: [
+                    { text: "Je publie un compte-rendu illustré dans le Slack", type: "Nain Posteur" },
+                    { text: "Je reste silencieux, j'observe", type: "Nain Discret" },
+                    { text: "Je propose des idées très structurées", type: "Nain Capable" },
+                    { text: "Je compare tout avec ce qu'on faisait avant", type: "Nain Comparable" }
+                ]
+            },
+            {
+                question: "Quel est ton rapport au changement ?",
+                answers: [
+                    { text: "Je résiste, je suis fidèle aux routines", type: "Nain Fidèle" },
+                    { text: "Je le cherche, j'évolue en permanence", type: "Nain Corrigible" },
+                    { text: "Je change tout le temps, ça fait partie de moi", type: "Nain Variant" },
+                    { text: "Je le filtre à travers mes croyances profondes", type: "Nain Secte" }
+                ]
+            },
+            {
+                question: "Un moment de calme, tu fais quoi ?",
+                answers: [
+                    { text: "Je mange ou je m'allonge", type: "Nain Gras" },
+                    { text: "Je planifie la suite", type: "Nain Conscient" },
+                    { text: "Je me rends utile quand même", type: "Nain Capable" },
+                    { text: "Je médite sur mon rôle dans le groupe", type: "Nain Fidèle" }
+                ]
+            },
+            {
+                question: "Comment réagis-tu face à une décision irrationnelle de ton équipe ?",
+                answers: [
+                    { text: "Je grogne, bien sûr", type: "Nain Geigneur" },
+                    { text: "Je reste discret, je note pour plus tard", type: "Nain Discret" },
+                    { text: "J'argumente avec méthode", type: "Nain Conscient" },
+                    { text: "J'essaie de faire changer les esprits par la foi", type: "Nain Secte" }
+                ]
+            },
+            {
+                question: "Ton approche d'un nouveau projet :",
+                answers: [
+                    { text: "Je me demande à quoi ça sert, et je compare", type: "Nain Comparable" },
+                    { text: "Je me lance directement", type: "Nain Capable" },
+                    { text: "Je regarde si ça rentre dans mes principes", type: "Nain Secte" },
+                    { text: "Je m'adapte au contexte, comme d'hab", type: "Nain Variant" }
+                ]
+            },
+            {
+                question: "Dans un moment de tension, tu...",
+                answers: [
+                    { text: "Cherches la paix, coûte que coûte", type: "Nain Fidèle" },
+                    { text: "Exprimes fort ton opinion", type: "Nain Geigneur" },
+                    { text: "Tentes de corriger la situation", type: "Nain Corrigible" },
+                    { text: "T'effaces doucement dans l'ombre", type: "Nain Discret" }
+                ]
+            },
+            {
+                question: "Quand tout va bien :",
+                answers: [
+                    { text: "Je me méfie, ça cache un piège", type: "Nain Conscient" },
+                    { text: "J'en profite pour publier des trucs", type: "Nain Posteur" },
+                    { text: "Je me relâche totalement", type: "Nain Gras" },
+                    { text: "Je prends un peu d'avance", type: "Nain Capable" }
+                ]
+            },
+            {
+                question: "Face à un conflit d'idées :",
+                answers: [
+                    { text: "Je reste fidèle à mon groupe", type: "Nain Fidèle" },
+                    { text: "Je compare les arguments", type: "Nain Comparable" },
+                    { text: "Je tente de convaincre par la foi", type: "Nain Secte" },
+                    { text: "Je me transforme selon ce qui est utile", type: "Nain Variant" }
+                ]
+            },
+            {
+                question: "Tu termines une tâche complexe :",
+                answers: [
+                    { text: "Je regarde ce que je peux améliorer", type: "Nain Corrigible" },
+                    { text: "Je vais poster le résultat partout", type: "Nain Posteur" },
+                    { text: "Je suis crevé mais content", type: "Nain Crevable" },
+                    { text: "Je me récompense avec une pause bien grasse", type: "Nain Gras" }
+                ]
+            }
+        ];
+
+        let current = 0;
+        let scores = {};
+
+        function renderQuestion() {
+            const container = document.getElementById("quiz");
+            container.innerHTML = "";
+            if (current < questions.length) {
+                const q = questions[current];
+                const div = document.createElement("div");
+                div.className = "question";
+                div.innerHTML = `<h2>${q.question}</h2>`;
+                const answersDiv = document.createElement("div");
+                answersDiv.className = "answers";
+                q.answers.forEach(a => {
+                    const btn = document.createElement("button");
+                    btn.textContent = a.text;
+                    btn.onclick = () => {
+                        scores[a.type] = (scores[a.type] || 0) + 1;
+                        current++;
+                        renderQuestion();
+                    };
+                    answersDiv.appendChild(btn);
+                });
+                div.appendChild(answersDiv);
+                container.appendChild(div);
+            } else {
+                const result = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+                const description = profiles[result] || "Profil inconnu du Nexus";
+                container.innerHTML = `
+                    <div class='result'>
+                        ✨ Tu es un <strong>${result}</strong> ✨<br>Un fier représentant du Nexus.
+                        <div class="details">${description}</div>
+                        <br><button onclick='restartQuiz()'>Recommencer</button>
+                    </div>`;
+            }
+        }
+
+        function restartQuiz() {
+            current = 0;
+            scores = {};
+            renderQuestion();
+        }
+
+        renderQuestion();
+    </script>
+</body>
+
+</html>

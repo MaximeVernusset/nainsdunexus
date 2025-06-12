@@ -1,3 +1,9 @@
+<div align=center>
+
+➡️ **[Clique ici pour découvrir ton Nain intérieur](quiz.html)** ⬅️
+
+</div>
+
 # ✨ Étude Psycho-Sociale des profils de Nains du Nexus
 
 ## Introduction
@@ -296,5 +302,9 @@ Les **Nains du Nexus** forment un système psycho-social hybride, à la fois par
 Au final, chaque groupe a besoin d'un peu de chaque Nain.
 
 Et si vous ne vous reconnaissez dans aucun... vous êtes peut-être juste un *Nain Variant* en mutation.
+
+## 🧙‍♂️ **Découvre ton Profil de Nain du Nexus !🎯**
+
+➡️ **[Clique ici pour découvrir ton Nain intérieur](quiz.html)**
 
 ![Poster](poster.png)
