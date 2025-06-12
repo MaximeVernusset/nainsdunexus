@@ -1,7 +1,5 @@
 <div align=center>
-
-➡️ **[Clique ici pour découvrir ton Nain intérieur](quiz.html)** ⬅️
-
+  ➡️ <strong><a href="quiz.html">Clique ici pour découvrir ton Nain intérieur</a></strong> ⬅️
 </div>
 
 # ✨ Étude Psycho-Sociale des profils de Nains du Nexus
