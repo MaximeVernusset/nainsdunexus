@@ -296,3 +296,5 @@ Les **Nains du Nexus** forment un système psycho-social hybride, à la fois par
 Au final, chaque groupe a besoin d'un peu de chaque Nain.
 
 Et si vous ne vous reconnaissez dans aucun... vous êtes peut-être juste un *Nain Variant* en mutation.
+
+![Poster](poster.png)
